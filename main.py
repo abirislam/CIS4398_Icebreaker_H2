@@ -5,6 +5,7 @@
 #     --header "Accept: application/json"
 
 import requests
+import json
 
 URL = "https://courses.ianapplebaum.com/api/syllabus/4"
 
@@ -20,4 +21,13 @@ r = requests.get(url = URL, headers= {'Authorization': "Bearer goPnfrn2AIHUnMmFG
           'Accept': "application/json"})
 data = r.json()
 
-print(data)
+# print(data)
+# print(string1)
+# event name, description, and date
+
+
+for x in range(len(data["events"])):
+    print(data["events"][x]['event_name'])
+    print(data["events"][x]['event_description'])
+    print(data["events"][x]['event_date'])
+    print()

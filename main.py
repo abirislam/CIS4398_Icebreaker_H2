@@ -28,7 +28,7 @@ with open('Important Dates.csv', 'w', encoding='utf-8') as f:
     
 
 msalHeaders = {
-    'Authorization': f'Bearer ADD YOUR TOKEN', 
+    'Authorization': f'Bearer [ACCESS TOKEN HERE]', 
     'Content-Type': "application/json",
       'Accept': "application/json"
 }
@@ -42,12 +42,12 @@ for x in range(len(data["events"])):
         },
 
         'start': {
-            'dateTime': datetime.strptime(str(data["events"][x]['event_date']),'%Y-%m-%d').isoformat(),
-            'timeZone': 'UTC'
+            'dateTime':(datetime.strptime(str(data["events"][x]['event_date']),'%Y-%m-%d')).isoformat(),
+            'timeZone': 'America/New_York'
         },
         'end': {
-            'dateTime':  datetime.strptime(str(data["events"][x]['event_date']),'%Y-%m-%d').isoformat(),
-            'timeZone': 'UTC'
+            'dateTime': (datetime.strptime(str(data["events"][x]['event_date']),'%Y-%m-%d') + timedelta(hours=24)).isoformat(),
+            'timeZone': 'America/New_York'
         },
     }
 

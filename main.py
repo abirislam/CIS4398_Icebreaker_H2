@@ -1,9 +1,3 @@
-# curl --request GET \
-#     --get "https://courses.ianapplebaum.com/api/syllabus/1" \
-#     --header "Authorization: Bearer goPnfrn2AIHUnMmFGhtyfXbRS1zIbdOuJ3OMjl9M" \
-#     --header "Content-Type: application/json" \
-#     --header "Accept: application/json"
-
 import requests
 import json
 
@@ -21,13 +15,15 @@ r = requests.get(url = URL, headers= {'Authorization': "Bearer goPnfrn2AIHUnMmFG
           'Accept': "application/json"})
 data = r.json()
 
-# print(data)
-# print(string1)
-# event name, description, and date
 
+with open('Important Dates.csv', 'w', encoding='utf-8') as f:
+    f.write("Event Name,Description,Date\n")
+    for x in range(len(data["events"])):
+        f.write(str(data["events"][x]['event_name']))
+        f.write(",")
+        f.write("\"" + str(data["events"][x]['event_description']) + "\"")
+        f.write(",")
+        f.write(str(data["events"][x]['event_date']))
+        f.write("\n")
+    
 
-for x in range(len(data["events"])):
-    print(data["events"][x]['event_name'])
-    print(data["events"][x]['event_description'])
-    print(data["events"][x]['event_date'])
-    print()
